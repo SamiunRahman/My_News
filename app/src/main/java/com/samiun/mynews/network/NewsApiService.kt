@@ -1,6 +1,6 @@
 package com.samiun.mynews.network
 
-import com.samiun.mynews.model.Articales
+import com.samiun.mynews.model.News
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -22,11 +22,11 @@ private val retrofit = Retrofit.Builder()
 interface NewsApiService{
 
     @GET("v2/top-headlines?country=us&apiKey=158e738d4a6447db8c51dbbb7d79d7b1")
-    suspend fun getArticales(): List<Articales>
+    suspend fun getArticales(): News
 
 }
 
-object  NewApi
+object  NewsApi
 {
     val retrofitService : NewsApiService by lazy { retrofit.create(NewsApiService::class.java) }
 }
