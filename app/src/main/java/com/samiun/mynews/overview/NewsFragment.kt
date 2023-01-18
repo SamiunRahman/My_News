@@ -15,6 +15,7 @@ class NewsFragment : Fragment() {
 
     private val viewModel: OverviewViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,12 +29,18 @@ class NewsFragment : Fragment() {
         binding.viewModel = viewModel
         viewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
             if (articles != null) {
-                binding.newsArticle.adapter = NewsAdapter(requireContext(), viewModel, viewModel.articles.value as ArrayList<Article>)
+                binding.newsArticle.adapter = NewsAdapter(requireContext(), viewModel, viewModel.articles.value!!)
             }
         })
 
         //binding.newsArticle.adapter = NewsAdapter(requireContext(), viewModel,viewModel.articles.value as ArrayList<Article>)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 }

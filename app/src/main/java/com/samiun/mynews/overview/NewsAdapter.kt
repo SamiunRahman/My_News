@@ -20,7 +20,7 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 import com.bumptech.glide.Glide
 
 
-class NewsAdapter(private val context:Context, private val viewModel: OverviewViewModel,private val arrayList: ArrayList<Article>):RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
+class NewsAdapter(private val context:Context, private val viewModel: OverviewViewModel,private val arrayList:List<Article>):RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
 
     class NewsViewHolder(private var binding: View
     ): RecyclerView.ViewHolder(binding){
