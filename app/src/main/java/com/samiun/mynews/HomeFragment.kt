@@ -36,15 +36,15 @@ class HomeFragment : Fragment() {
         viewpage.adapter = tabAdapter
         TabLayoutMediator(tabLayout,viewpage){  tab,position->
             when(position){
-//                0-> {
-//                    tab.text = "Top News"
-//                }
-//                1-> {
-//                    tab.text = "BBC"
-//                }
-//                2->{
-//                    tab.text = "CNN"
-//            }
+                0-> {
+                    tab.text = "Top News"
+                }
+                1-> {
+                    tab.text = "BBC"
+                }
+                2->{
+                    tab.text = "CNN"
+            }
             }
         }.attach()
     }

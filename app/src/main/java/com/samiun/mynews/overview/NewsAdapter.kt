@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ListAdapter
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.DiffUtil
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.samiun.mynews.R
-import com.samiun.mynews.databinding.FragmentNewsBinding
-import com.samiun.mynews.databinding.NewsListBinding
 import com.samiun.mynews.model.Article
-import kotlinx.coroutines.NonDisposableHandle
-import kotlinx.coroutines.NonDisposableHandle.parent
 import com.bumptech.glide.Glide
+import com.samiun.mynews.HomeFragmentDirections
+import com.samiun.mynews.WebFragment
 
 
 class NewsAdapter(private val context:Context, private val viewModel: OverviewViewModel,private val arrayList:List<Article>):RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
@@ -27,6 +26,7 @@ class NewsAdapter(private val context:Context, private val viewModel: OverviewVi
         val image=itemView.findViewById<ImageView>(R.id.news_image)
         val title=itemView.findViewById<TextView>(R.id.news_title)
         val description=itemView.findViewById<TextView>(R.id.news_content)
+        val readBtn = itemView.findViewById<TextView>(R.id.read_more)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -39,6 +39,14 @@ class NewsAdapter(private val context:Context, private val viewModel: OverviewVi
         val url = news.urlToImage
         holder.title.text=news.title
         holder.description.text=news.description
+
+        holder.readBtn.setOnClickListener {
+
+           val action =NewsFragmentDirections.actionNewsFragmentToWebFragment(news.url.toString())
+            val action2 = HomeFragmentDirections.actionHomeFragmentToWebFragment(news.url.toString())
+            holder.itemView.findNavController().navigate(action2)
+            Toast.makeText(context, "Read More CLicked", Toast.LENGTH_SHORT).show()
+        }
 
         Log.v("News Adapter ", "${news.urlToImage}")
 
